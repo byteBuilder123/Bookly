@@ -1,0 +1,200 @@
+/* dashboard.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s ease;
+}
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease;
+}
+
+.navbar-brand span {
+    color: #e3f2fd;
+    font-size: 20px;
+    transition: color 0.5s ease;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.list-group-item.active {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.dashboard-section {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.5s ease;
+    margin-bottom: 10px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.modal-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.5s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.5s ease;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    transition: background-color 0.5s ease;
+}
+
+/* Add hover effects */
+.list-group-item:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: scale(1.02);
+}
+
+.navbar-brand span:hover {
+    color: #007bff;
+}
+
+.card-header:hover {
+    background-color: #0056b3;
+}
+
+footer:hover {
+    background-color: #e3f2fd;
+}
+
+/* Style the edit button */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.5s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Style the delete button */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.5s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Make Manage Reviews and Manage Orders Header Sticky */
+.fixed-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* or any color that matches your design */
+}
+
+/* Make Manage Reviews and Manage Orders sections scrollable */
+#add_books .card-body,
+#manage_books .card-body,
+#manage_category .card-body,
+#manage_users .card-body,
+#view_orders .card-body {
+    margin-top: -30px;
+    max-height: 50vh;
+    /* Adjust as needed */
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Add transitions to form inputs and buttons */
+form input,
+form select,
+form textarea,
+form button {
+    transition: all 0.3s ease;
+}
+
+/* Add hover effects to form inputs and buttons */
+form input:hover,
+form select:hover,
+form textarea:hover,
+form button:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Add focus effects to form inputs and buttons */
+form input:focus,
+form select:focus,
+form textarea:focus {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Style the active sidebar menu item */
+.list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Add hover effects to the sidebar menu items */
+.list-group-item:hover {
+    background-color: #ecf3f2;
+    color: #fff;
+}
+
+/* Add a hover effect to the navbar brand */
+.navbar-brand:hover {
+    color: #fff;
+}
+
+/* Add a hover effect to the navbar links */
+.nav-link:hover {
+    color: #fff;
+}
+
+/* Add styles for success and error messages */
+.alert {
+    display: none;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

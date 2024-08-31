@@ -1,0 +1,179 @@
+/* Styling for the book images */
+.card-img-top {
+    max-width: 150px;
+    /* Set a maximum width for the images */
+    max-height: 200px;
+    /* Set a maximum height for the images */
+    width: auto;
+    /* Ensure images maintain aspect ratio */
+    height: auto;
+    /* Ensure images maintain aspect ratio */
+    margin-bottom: 10px;
+    /* Add some space below the images */
+}
+
+/* Adjust text size inside the book card */
+.book-card .card-title,
+.book-card .card-text,
+.book-card .btn {
+    font-size: 14px;
+    /* Adjust the font size of the text inside the card */
+}
+
+/* Adjust the size of the book card container */
+.book-card,
+.featured-book-card {
+    /* Your styles for book cards */
+    /* For example: */
+    background-color: #00095e;
+    border-radius: 10px;
+    padding: 10px;
+    /* Decrease the padding to make the card smaller */
+    /* Add any other styles you need */
+}
+
+/* Styles for book images */
+.book-card .card-img-top,
+.featured-book-card .card-img-top {
+    /* Keep the image size intact */
+    width: 100%;
+    /* Set the width to 100% to maintain the original image size */
+    height: auto;
+    /* Automatically adjust the height to maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    /* Rounded corners only at the top */
+}
+
+/* Adjust the size of the book card container */
+.book-card,
+.featured-book-card {
+    /* Your styles for book cards */
+    /* For example: */
+    background-color: #bfcef5;
+    /* Set background color */
+    border: 2px solid #020857;
+    /* Set border color to blue */
+    border-radius: 10px;
+    padding: 4px;
+    /* Decrease the padding to make the card smaller */
+    /* Add any other styles you need */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styles for book images */
+.book-card .card-img-top,
+.featured-book-card .card-img-top {
+    /* Keep the image size intact */
+    width: 100%;
+    /* Set the width to 100% to maintain the original image size */
+    height: auto;
+    /* Automatically adjust the height to maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 10px;
+    /* Rounded corners */
+}
+
+/* Adjust text size and color */
+.book-card .card-title,
+.book-card .card-text,
+.book-card .btn,
+.featured-book-card .card-title,
+.featured-book-card .card-text,
+.featured-book-card .btn {
+    font-size: 16px;
+    /* Adjust the font size of the text */
+    color: #000000;
+    /* Set text color to black */
+    text-align: center;
+    /* Center align text */
+}
+
+/* Adjust text size inside the book card */
+.book-card .card-title,
+.book-card .card-text,
+.book-card .btn {
+    font-size: 14px;
+    /* Adjust the font size of the text inside the card */
+}
+
+/* Adjust the size of the buttons */
+.book-card .btn,
+.featured-book-card .btn {
+    padding: 8px 16px;
+    /* Adjust padding to decrease button size */
+    font-size: 12px;
+    /* Adjust font size of the button text */
+    border-radius: 5px;
+    /* Add border radius for rounded corners */
+    background-color: #1c33e6;
+    /* Set background color of the button */
+    color: #ffffff;
+    /* Set text color of the button */
+    border: none;
+    /* Remove border */
+    cursor: pointer;
+    /* Change cursor to pointer on hover */
+}
+
+/* Style hover effect for buttons */
+.book-card .btn:hover,
+.featured-book-card .btn:hover {
+    background-color: #18174f;
+    /* Change background color on hover */
+}
+
+
+
+/* Styling for the Books Section genre */
+#booksByGenre {
+    padding: 50px 0;
+    /* Adjust the padding as needed */
+}
+
+#booksByGenre h2 {
+    color: #333;
+}
+
+#genreSelect {
+    width: 100%;
+    max-width: 300px;
+    /* Limit the width of the select element */
+    margin: 0 auto;
+    /* Center the select element */
+}
+
+#booksByGenreContainer {
+    margin-top: 5 px;
+    /* Add some space between the select and the books */
+}
+
+#booksByGenreContainer .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#booksByGenreContainer .card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Featured Books Section styles */
+#FeaturedBooks {
+    background-color: #ecf0f1;
+    /* Light gray background */
+    padding: 100px 0;
+    /* Adjust as needed */
+}
+
+/* New Arrivals Section styles */
+#NewArrivals {
+    background-color: #043efc;
+    /* Light gray background */
+    padding: 100px 0;
+    /* Adjust as needed */
+}

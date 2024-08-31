@@ -1,0 +1,20 @@
+This code is the good way to verify user, But as it is not working so for now we are not using This
+//   try {
+//     // Verify the token with the secret key (use environment variable)
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     const userId = decoded.userId;
+//    // res.redirect(token)
+
+//     // Fetch user information from the database using the user ID
+//     const user = await UserModel.getUserById(userId);
+//     if (!user) {
+//       return res.status(401).json({ message: "Unauthorized: User not found" });
+//     }
+
+//     // Attach user information to request object for later use
+//     req.user = user;
+//     next();
+//   } catch (error) {
+//     console.error('Error authenticating user:', error.message || error); // Log more specific error message if available
+//     res.status(401).json({ message: "Unauthorized: Invalid token or Internal Server Error" });
+//   }

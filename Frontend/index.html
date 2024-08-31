@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Book-Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Explore a world of knowledge and imagination through our curated collection of books. Join us on a journey of discovery!">
+    <meta name="keywords" content="bookstore, books, literature, reading, fiction, non-fiction, bestsellers">
+    <meta name="author" content="Syeda Saba">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="booksCard.css">
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <!-- Logo and Name -->
+                <a class="navbar-brand" href="#">
+                    <img src="img/logo.png" height="60" alt="Bookstore Logo">
+                    <span class="ml-2">Bookly</span>
+                </a>
+                <!-- Toggler button for mobile -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="books.html">Books</a>
+                        </li>
+
+                        <li class="nav-item" id="dashboard">
+                            <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- Search Bar Icon -->
+                <div class="ml-3">
+                    <button class="btn btn-light rounded-pill" id="search-icon-btn" aria-label="Search" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Search Bar (Initially Hidden) -->
+                <form id="searchForm" class="form-inline ml-3 search-hidden">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Search books...">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-light" title="Submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div id="searchResults" class="mt-4">
+
+
+                            </div>
+                            <!-- Login Message (Initially Hidden) -->
+
+
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- Cart and login buttons -->
+                <div class="ml-3">
+                    <button class="btn btn-light rounded-pill" data-toggle="modal" data-target="#cart-modal"
+                        aria-label="View Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="d-none d-md-inline ml-1"></span>
+                    </button>
+                    <button class="btn btn-light rounded-pill ml-2" data-toggle="modal"
+                        data-target="#login-registration-modal" aria-label="login-registration-modal">
+                        <i class="fas fa-user"></i>
+                        <span class="d-none d-md-inline ml-1"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Welcome Section with Slider -->
+    <section id="main-tag-section" class="py-5 bg-light">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Slider section -->
+                    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="detail-box text-center">
+                                                <h1 class="mb-3">BookStore</h1>
+                                                <h1 class="mb-4">For All Your Reading Needs</h1>
+                                                <p>Embark on a literary adventure through our handpicked collection of
+                                                    books. Let your imagination soar!</p>
+                                                <a href="books.html" class="btn btn-primary btn-lg rounded-pill"
+                                                    id="cta-button">Discover Our Collection</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="img-box">
+                                                <img src="img/slider-img.png" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sectiion carousel item -->
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="detail-box text-center">
+                                                <h1 class="mb-3">Our Diverse Collection</h1>
+                                                <p>Explore the wonders of literature with our diverse collection. From
+                                                    gripping mysteries to heartwarming tales, we have something for
+                                                    every reader.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="img-box">
+                                                <img src="img/slider-img.png" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="detail-box text-center">
+                                                <h1 class="mb-3">About Us</h1>
+                                                <p>Discover the story behind our BookStore. Founded with a passion for
+                                                    literature.We believe in the
+                                                    power of books to transform lives and inspire
+                                                    new adventures. Our mission is to provide a curated
+                                                    collection of books that cater to diverse
+                                                    interests and tastes, ensuring that every reader
+                                                    finds something special within our shelves.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="img-box">
+                                                <img src="img/about-img.png" alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <!-- Services Section -->
+
+                                <div class="container">
+                                    <h3 class="text-center display-4 mb-5">Our Services</h3>
+                                    <div class="row">
+                                        <div class="col-md-3 mb-4">
+                                            <!-- Service Card 1 -->
+                                            <div class="card border-0 shadow text-center service-card">
+                                                <div class="card-body">
+                                                    <!-- Replace the icon with a relevant one -->
+                                                    <i class="fas fa-book fa-3x mb-3 text-primary"></i>
+                                                    <h3 class="card-title">Wide Book Selection</h3>
+                                                    <!-- Add a relevant description for the service -->
+                                                    <p class="card-text">Explore a vast collection
+                                                        of books across various genres.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-4">
+                                            <!-- Service Card 2 -->
+                                            <div class="card border-0 shadow text-center service-card">
+                                                <div class="card-body">
+                                                    <!-- Replace the icon with a relevant one -->
+                                                    <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
+                                                    <h3 class="card-title">Fast Delivery</h3>
+                                                    <!-- Add a relevant description for the service -->
+                                                    <p class="card-text">Get your books delivered
+                                                        quickly and efficiently.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-4">
+                                            <!-- Service Card 3 -->
+                                            <div class="card border-0 shadow text-center service-card">
+                                                <div class="card-body">
+                                                    <!-- Replace the icon with a relevant one -->
+                                                    <i class="fas fa-tags fa-3x mb-3 text-primary"></i>
+                                                    <h3 class="card-title">Special Deals</h3>
+                                                    <!-- Add a relevant description for the service -->
+                                                    <p class="card-text">Discover amazing deals and
+                                                        offers on our books.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-4">
+                                            <!-- Service Card 4 -->
+                                            <div class="card border-0 shadow text-center service-card">
+                                                <div class="card-body">
+                                                    <!-- Replace the icon with a relevant one -->
+                                                    <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                                                    <h3 class="card-title">Secure Payment</h3>
+                                                    <!-- Add a relevant description for the service -->
+                                                    <p class="card-text">Shop with confidence using
+                                                        our secure payment methods.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                    </div>
+                    <div class="carousel_btn_box">
+                        <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Submit
+                        Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label for="reviewText">Review:</label>
+                            <textarea class="form-control" id="reviewText" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating:</label>
+                            <input type="number" class="form-control" id="reviewRating" min="1" max="5" required>
+                        </div>
+                    </form>
+                    <!-- Add a div to display messages -->
+                    <div id="reviewMessage" class="hidden alert" role="alert"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submitReviewBtn">Submit Review</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Viewing Reviews -->
+    <div class="modal fade" id="viewReviewsModal" tabindex="-1" aria-labelledby="viewReviewsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewReviewsModalLabel">Book
+                        Reviews</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="all-reviews-container" class="row">
+                        <!-- Existing reviews will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quantity Modal -->
+    <div class="modal fade" id="quantityModal" tabindex="-1" role="dialog" aria-labelledby="quantityModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantityModalLabel">Enter Quantity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="quantityForm">
+                        <div class="form-group">
+                            <label for="quantityInput">Quantity:</label>
+                            <input type="number" class="form-control" id="quantityInput" min="1" required>
+                        </div>
+                    </form>
+                    <!-- Add a div to display messages -->
+                    <div id="quantityMessage" class="hidden"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submitQuantityBtn">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login & Register -->
+    <div class="modal fade show" id="login-registration-modal" tabindex="-1"
+        aria-labelledby="login-registration-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="login-registration-modal-label">Login or Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="login-form-container">
+                        <form id="loginForm1">
+                            <div class="form-group">
+                                <label for="loginUsername1">Username:</label>
+                                <input type="text" class="form-control" id="loginUsername1" name="loginUsername"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword1">Password:</label>
+                                <input type="password" class="form-control" id="loginPassword1" name="loginPassword"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <p id="loginMessage" class="error-message"></p>
+                        </form>
+                        <button id="toggleRegistrationBtn" class="btn btn-link">Don't have an account? Sign up</button>
+                    </div>
+                    <div id="registration-form-container" style="display: none;">
+                        <form id="registrationForm1" method="POST">
+                            <div class="form-group">
+                                <label for="registrationUsername1">Username:</label>
+                                <input type="text" class="form-control" id="registrationUsername1" name="username"
+                                    data-purpose="registration" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registrationEmail1">Email:</label>
+                                <input type="email" class="form-control" id="registrationEmail1" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registrationPassword1">Password:</label>
+                                <input type="password" class="form-control" id="registrationPassword1" name="password"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <p id="registrationMessage" class="error-message"></p>
+                        </form>
+                        <button id="toggleLoginBtn" class="btn btn-link">Already have an account? Log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Cart Modal-->
+    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="cart-modal-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cart-modal-label">Shopping
+                        Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="cart-modal-body">
+                    <!-- Cart content goes here -->
+                    <div id="cart-items-container">
+                        <!--cart items-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- Checkout button -->
+                    <button type="button" class="btn btn-primary" id="checkout-btn">Checkout</button>
+                    <!-- Clear cart button -->
+                    <button type="button" class="btn btn-danger" id="clear-cart-btn">Clear Cart</button>
+                    <!-- Checkout form -->
+                    <form id="checkout-form" class="hidden">
+                        <div class="form-group">
+                            <label for="customer_name">Name</label>
+                            <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_email">Email</label>
+                            <input type="customer_email" class="form-control" id="customer_email" name="customer_email"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Contact Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping_method">Shipping
+                                Method</label>
+                            <select class="form-control" id="shipping_method" name="shipping_method" required>
+                                <option value="5">Standard Shipping
+                                    ($5.00)</option>
+                                <option value="10">Express Shipping
+                                    ($10.00)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment_method">Payment
+                                Method</label>
+                            <select class="form-control" id="payment_method" name="payment_method" required>
+                                <option value="cash_on_payment">Cash on Payment</option>
+                                <option value="creditCard">Credit
+                                    Card</option>
+                            </select>
+                        </div>
+
+                        <div id="credit-card-fields" class="hidden">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cardExpMonth">Expiration Month</label>
+                                    <input type="number" class="form-control" id="cardExpMonth" name="cardExpMonth"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardExpYear">Expiration Year</label>
+                                    <input type="number" class="form-control" id="cardExpYear" name="cardExpYear"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCvv">CVV</label>
+                                <input type="number" class="form-control" id="cardCvv" name="cardCvv" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sub_total">Sub Total</label>
+                            <input type="text" class="form-control" id="sub_total" name="sub_total" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="text" class="form-control" id="total" name="total" required>
+                        </div>
+                        <!-- Add more checkout form fields here -->
+                        <button type="submit" class="btn btn-primary">Place
+                            Order</button>
+                    </form>
+
+                    <!-- Success message (initially hidden) -->
+                    <div id="success-message" class="hidden">
+                        <p>Order placed successfully!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Address</h5>
+                    <p>Email: bookstore@gmail.com</p>
+                    <p>Phone: +1234567890</p>
+                    <p>Address: 123 Main Street, Muzaffarabad, Azad
+                        Kashmir</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>FAQ</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="text-white" onclick="toggleAnswer('how-to-order'); return false;">How
+                                to
+                                place an order?</a>
+                            <p id="how-to-order-answer" class="hidden">To
+                                place an order, simply browse our
+                                collection,
+                                select the books you want, and proceed to
+                                checkout.</p>
+                        </li>
+
+                        <li>
+                            <a href="#" class="text-white"
+                                onclick="toggleAnswer('shipping-options'); return false;">What
+                                are the shipping
+                                options?</a>
+                            <p id="shipping-options-answer" class="hidden">We offer standard and express
+                                shipping
+                                options. Standard shipping typically takes
+                                3-5 business days, while express shipping
+                                delivers within 1-2 business days.</p>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white" onclick="toggleAnswer('track-order'); return false;">How
+                                can
+                                I track my order?</a>
+                            <p id="track-order-answer" class="hidden">Once
+                                your order has been shipped, you will
+                                receive
+                                a tracking number via email. You can use
+                                this tracking number to monitor the status
+                                of
+                                your delivery.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/your.profile.name" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+
+                        <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/yourusername" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-3">
+            <p>&copy; <span id="currentYear"></span> Book Store. All rights
+                reserved.</p>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('payment_method').addEventListener('change', handlePaymentMethodChange);
+            });
+
+            function handlePaymentMethodChange() {
+                const creditCardFields = document.getElementById('credit-card-fields');
+                const selectedPaymentMethod = document.getElementById('payment_method').value;
+
+                if (selectedPaymentMethod === 'creditCard') {
+                    creditCardFields.classList.remove('hidden');
+                } else {
+                    creditCardFields.classList.add('hidden');
+                }
+            }
+        </script>
+
+        <!--  Bootstrap JS and other scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!--  JavaScript file -->
+
+        <script type='module' src="search.js"></script>
+        <script type='module' src="common_function.js"></script>
+        <script type='module' src="main.js"></script>
+        <script type='module' src="checkout.js"></script>
+        <script src="login.js"></script>
+        <script src="links.js"></script>
+        <script src="script.js"></script>
+        <script src="show_dashboard.js"></script>
+
+
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,966 @@
+document.addEventListener("DOMContentLoaded", async function () {
+    // Add event listener for search form submissions
+    document.getElementById('searchForm').addEventListener('submit', handleSearchFormSubmit);
+
+    // jQuery code for toggling search form visibility
+    $('#search-icon-btn').click(function () {
+        $('#searchForm').toggleClass('search-hidden');
+    });
+
+    // Toggle navbar collapse
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('#navbarNav');
+    navbarToggler.addEventListener('click', function () {
+        navbarCollapse.classList.toggle('show');
+    });
+    // Close navbar collapse when a link is clicked
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    navLinks.forEach(function (navLink) {
+        navLink.addEventListener('click', function (event) {
+            // Prevent default link behavior
+            event.preventDefault();
+            // Close navbar collapse
+            navbarCollapse.classList.remove('show');
+            // Get the target section id from the href attribute
+            const targetId = navLink.getAttribute('href').substring(1);
+            // Scroll to the target section
+            const targetSection = document.getElementById(targetId);
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    const registrationForm = document.getElementById('registrationForm');
+    const loginForm = document.getElementById('loginForm');
+    const registrationMessage = document.getElementById('registration-message');
+    const loginMessage = document.getElementById('loginMessage');
+    const registerButton = document.getElementById('toggleRegistrationFormBtn');
+    const registrationFormContainer = document.getElementById('registrationFormContainer');
+    // Hide registration form initially
+    registrationFormContainer.style.display = 'none';
+    // Event listener for register button
+    registerButton.addEventListener('click', function () {
+        if (registrationFormContainer.style.display === 'none') {
+            registrationFormContainer.style.display = 'block';
+        } else {
+            registrationFormContainer.style.display = 'none';
+        }
+    });
+    // Event listener for registration form submission
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('registration-username').value;
+            const email = document.getElementById('registration-email').value;
+            const password = document.getElementById('registration-password').value;
+
+            try {
+                const response = await fetch('http://localhost:5001/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+                const data = await response.json();
+                registrationMessage.textContent = data.message;
+            } catch (error) {
+                console.error('Error registering user:', error);
+                registrationMessage.textContent = 'Error registering user. Please try again later.';
+            }
+        });
+    }
+    // Event listener for login form submission
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const loginUsername = document.getElementById('loginUsername').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:5001/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: loginUsername, password: loginPassword })
+                });
+                const data = await response.json();
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    loginMessage.textContent = 'Login successful. Redirecting...';
+                    window.location.href = '/dashboard';
+                } else {
+                    loginMessage.textContent = data.message;
+                }
+            } catch (error) {
+                console.error('Error logging in:', error);
+                loginMessage.textContent = 'Error logging in. Please try again later.';
+            }
+        });
+    }
+
+    // Function to fetch IT series books from the backend
+    const fetchITSeriesBooks = async () => {
+        try {
+            const response = await fetch('http://localhost:5001/api/books/it_books');
+            const data = await response.json();
+            displayITSeriesBooks(data);
+        } catch (error) {
+            console.error('Error fetching IT series books:', error);
+        }
+    };
+    // display IT series books on page
+    const displayITSeriesBooks = (books) => {
+        const booksContainer = document.getElementById('it-series-books-container');
+
+        books.forEach((book) => {
+            // Create a card element
+            const bookCard = document.createElement('div');
+            bookCard.classList.add('card', 'border-0', 'shadow', 'book-card');
+
+            // Create card body
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+
+            // Display book name (title)
+            const title = document.createElement('h5');
+            title.classList.add('card-title');
+            title.textContent = book.title;
+
+            // Display book price
+            const price = document.createElement('p');
+            price.classList.add('card-text');
+            price.textContent = 'Price: $' + book.price;
+
+            // Button to add to cart
+            const addToCartBtn = document.createElement('button');
+            addToCartBtn.textContent = 'Add to Cart';
+            addToCartBtn.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
+            addToCartBtn.addEventListener('click', () => {
+                // Add logic to add the book to the cart
+                console.log('Added to cart:', book.title);
+            });
+
+            // Button to view more details
+            const moreDetailsBtn = document.createElement('button');
+            moreDetailsBtn.textContent = 'More Details';
+            moreDetailsBtn.classList.add('btn', 'btn-secondary', 'btn-sm');
+            moreDetailsBtn.addEventListener('click', () => {
+                // Toggle visibility of more details
+                const details = bookCard.querySelector('.book-details');
+                details.classList.toggle('hidden');
+            });
+
+            // Container for additional book details (initially hidden)
+            const detailsContainer = document.createElement('div');
+            detailsContainer.classList.add('book-details', 'hidden');
+
+            // Display additional book details (hidden by default)
+            const author = document.createElement('p');
+            author.textContent = 'Author: ' + book.author;
+
+            const genre = document.createElement('p');
+            genre.textContent = 'Genre: ' + book.genre;
+
+            const isbn = document.createElement('p');
+            isbn.textContent = 'ISBN: ' + book.isbn;
+
+            const description = document.createElement('p');
+            description.textContent = 'Description: ' + book.description;
+
+            detailsContainer.appendChild(author);
+            detailsContainer.appendChild(genre);
+            detailsContainer.appendChild(isbn);
+            detailsContainer.appendChild(description);
+
+            // Append elements to card body
+            cardBody.appendChild(title);
+            cardBody.appendChild(price);
+            cardBody.appendChild(addToCartBtn);
+            cardBody.appendChild(moreDetailsBtn);
+            cardBody.appendChild(detailsContainer);
+
+            // Append card body to card
+            bookCard.appendChild(cardBody);
+
+            // Append card to books container
+            booksContainer.appendChild(bookCard);
+        });
+    };
+    // Fetch all books from the backend API
+    async function fetchAllBooks() {
+        try {
+            const response = await fetch('http://localhost:5001/api/books');
+            if (!response.ok) {
+                throw new Error('Failed to fetch all books');
+            }
+            const allBooks = await response.json();
+            displayAllBooks(allBooks);
+        } catch (error) {
+            console.error('Error fetching all books:', error.message);
+        }
+    }
+    // Function to display all books on the page
+    function displayAllBooks(allBooks) {
+        const allBooksContainer = document.getElementById('all-books-container');
+        allBooksContainer.innerHTML = ''; // Clear previous content
+
+        const maxBooksToShow = 5; // Maximum number of books to initially display
+        for (let i = 0; i < Math.min(maxBooksToShow, allBooks.length); i++) {
+            const book = allBooks[i];
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-md-4', 'mb-4');
+            colDiv.innerHTML = `
+            <div class="card border-0 shadow book-card">
+                <img src="${book.image_url || 'placeholder.jpg'}" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">${book.title}</h5>
+                    <p class="card-text">Author: ${book.author}</p>
+                    <p class="card-text">Price: $${book.price}</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="${book.book_id}">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        `;
+            allBooksContainer.appendChild(colDiv);
+        }
+
+        // Add event listeners to all "Add to Cart" buttons
+        const addToCartButtons = document.querySelectorAll('.btn-primary');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCartHandler);
+        });
+
+        // Check if there are more books to display
+        if (allBooks.length > maxBooksToShow) {
+            // Create a button to show all books
+            const showAllButton = document.createElement('button');
+            showAllButton.textContent = 'View All Books';
+            showAllButton.classList.add('btn', 'btn-primary', 'mt-3');
+            showAllButton.addEventListener('click', () => {
+                // Display all books when the button is clicked
+                allBooks.slice(maxBooksToShow).forEach(book => {
+                    const colDiv = document.createElement('div');
+                    colDiv.classList.add('col-md-4', 'mb-4');
+                    colDiv.innerHTML = `
+                    <div class="card border-0 shadow book-card">
+                        <img src="${book.image_url || 'placeholder.jpg'}" class="card-img-top" alt="Book Image">
+                        <div class="card-body">
+                            <h5 class="card-title">${book.title}</h5>
+                            <p class="card-text">Author: ${book.author}</p>
+                            <p class="card-text">Price: $${book.price}</p>
+                            <button class="btn btn-primary btn-sm" data-book-id="${book.book_id}">Add to Cart</button>
+
+
+                            <button class="btn btn-danger remove-button">Remove</button>
+                        </div>
+                    </div>
+                `;
+                    allBooksContainer.appendChild(colDiv);
+                });
+                // Hide the "View All Books" button after displaying all books
+                showAllButton.style.display = 'none';
+            });
+            allBooksContainer.appendChild(showAllButton);
+        }
+    }
+    // Function to fetch and display featured books
+    async function fetchAndDisplayFeaturedBooks() {
+        try {
+            const response = await fetch('http://localhost:5001/api/books/featured');
+            if (!response.ok) {
+                throw new Error('Failed to fetch featured books');
+            }
+            const featuredBooks = await response.json();
+            displayFeaturedBooks(featuredBooks);
+        } catch (error) {
+            console.error('Error fetching featured books:', error.message);
+        }
+    }
+    // Function to display featured books on the page
+    function displayFeaturedBooks(featuredBooks) {
+        const featuredBooksRow = document.getElementById('featured-books-row');
+        featuredBooksRow.innerHTML = ''; // Clear previous content
+
+        featuredBooks.forEach(book => {
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-md-4', 'mb-4');
+            colDiv.innerHTML = `
+                <div class="card border-0 shadow featured-book-card">
+                    <img src="${book.image_url || 'placeholder.jpg'}" class="card-img-top" alt="Featured Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">${book.title}</h5>
+                        <p class="card-text">Author: ${book.author}</p>
+                        <p class="card-text">Price: $${book.price}</p>
+                        <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            featuredBooksRow.appendChild(colDiv);
+        });
+    }
+    // Function to fetch and display new arrivals
+    async function fetchAndDisplayNewArrivals() {
+        try {
+            const response = await fetch('http://localhost:5001/api/books/new_arrivals');
+            if (!response.ok) {
+                throw new Error('Failed to fetch new arrivals');
+            }
+            const newArrivals = await response.json();
+            displayNewArrivals(newArrivals);
+        } catch (error) {
+            console.error('Error fetching new arrivals:', error.message);
+        }
+    }
+    // Function to display new arrivals on the page
+    function displayNewArrivals(newArrivals) {
+        const newArrivalsRow = document.getElementById('new-arrivals-row');
+        newArrivalsRow.innerHTML = ''; // Clear previous content
+
+        newArrivals.forEach(book => {
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-md-4', 'mb-4');
+            colDiv.innerHTML = `
+                <div class="card border-0 shadow book-card">
+                    <img src="${book.image_url || 'placeholder.jpg'}" class="card-img-top" alt="Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">${book.title}</h5>
+                        <p class="card-text">Author: ${book.author}</p>
+                        <p class="card-text">Price: $${book.price}</p>
+                        <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            newArrivalsRow.appendChild(colDiv);
+        });
+    }
+    // Function to fetch and display reviews
+    async function fetchAndDisplayReviews() {
+        try {
+            const response = await fetch('http://localhost:5001/api/reviews');
+            if (!response.ok) {
+                throw new Error('Failed to fetch reviews');
+            }
+            const reviews = await response.json();
+            displayReviews(reviews);
+        } catch (error) {
+            console.error('Error fetching reviews:', error.message);
+        }
+    }
+    // Function to display reviews
+    function displayReviews(reviews) {
+        const allReviewsContainer = document.getElementById('all-reviews-container');
+        if (!allReviewsContainer) {
+            console.error('All reviews container not found.');
+            return;
+        }
+
+        reviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('col-md-4', 'mb-4');
+
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card', 'border-0', 'shadow', 'review-card');
+
+            const cardBodyDiv = document.createElement('div');
+            cardBodyDiv.classList.add('card-body');
+
+            const titleElement = document.createElement('h5');
+            titleElement.classList.add('card-title');
+            titleElement.textContent = review.customer_name;
+
+            const ratingElement = document.createElement('p');
+            ratingElement.classList.add('card-text');
+            ratingElement.textContent = `Rating: ${review.rating}`;
+
+            const reviewTextElement = document.createElement('p');
+            reviewTextElement.classList.add('card-text');
+            reviewTextElement.textContent = review.review_text;
+
+            cardBodyDiv.appendChild(titleElement);
+            cardBodyDiv.appendChild(ratingElement);
+            cardBodyDiv.appendChild(reviewTextElement);
+            cardDiv.appendChild(cardBodyDiv);
+            reviewElement.appendChild(cardDiv);
+
+            allReviewsContainer.appendChild(reviewElement);
+        });
+    }
+    // Function to submit reviews
+    async function submitReview() {
+        const name = document.getElementById('reviewName').value;
+        const reviewText = document.getElementById('reviewText').value;
+        const rating = document.getElementById('reviewRating').value;
+
+        // Check if name is empty
+        if (!name) {
+            console.error('Name is required.');
+
+            return; // Exit function if name is empty
+        }
+
+        const reviewData = {
+            name: name,
+            reviewText: reviewText,
+            rating: rating
+        };
+
+        try {
+            const response = await fetch('http://localhost:5001/api/reviews/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reviewData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit review');
+            }
+
+            const data = await response.json();
+            console.log('Review submitted successfully. Review ID: ' + data.reviewId);
+
+            // Optionally, you can display a success message or redirect the user to a different page
+        } catch (error) {
+            console.error('Error submitting review:', error.message);
+            // Optionally, you can display an error message to the user
+        }
+    }
+    // Add event listener to the submit button
+    const reviewButton = document.getElementById('submitReviewBtn');
+    if (reviewButton) {
+        reviewButton.addEventListener('click', submitReview);
+    }
+    // Add event listener to toggle button
+    const toggleReviewFormBtn = document.getElementById('toggleReviewFormBtn');
+    if (toggleReviewFormBtn) {
+        toggleReviewFormBtn.addEventListener('click', function () {
+            const reviewFormContainer = document.getElementById('reviewFormContainer');
+            if (reviewFormContainer.style.display === 'none') {
+                reviewFormContainer.style.display = 'block';
+            } else {
+                reviewFormContainer.style.display = 'none';
+            }
+        });
+    }
+    // Function to handle submitting the contact form
+    async function submitContactForm(event) {
+        event.preventDefault();
+
+        const contactForm = document.getElementById('contactForm');
+        const formData = new FormData(contactForm);
+        const contactData = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+        };
+
+        try {
+            const response = await fetch('http://localhost:5001/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(contactData)
+            });
+            if (!response.ok) {
+                throw new Error('Failed to submit contact form');
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error submitting contact form:', error.message);
+        }
+    }
+    // Add event listener to the contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', submitContactForm);
+    }
+    // Call functions to fetch and display other data when the page loads
+    fetchITSeriesBooks();
+    fetchAllBooks();
+    fetchAndDisplayFeaturedBooks();
+    fetchAndDisplayNewArrivals();
+    fetchAndDisplayReviews();
+
+
+    // Function to handle adding a book to the cart
+    function addToCartHandler(event) {
+        // Ensure the event target is a button
+        if (event.target.tagName.toLowerCase() !== 'button') {
+            return;
+        }
+
+        // Retrieve the book ID from the clicked button's data-book-id attribute
+        const book_id = event.target.dataset.bookId;
+
+        if (!book_id) {
+            console.error('Book ID not found.');
+            return;
+        }
+
+        console.log('Book ID:', book_id); // Log the book ID extracted from the button
+
+        // Assuming quantity is always 1 when adding from the book list
+        const quantity = 1; // Define quantity here or adjust as needed
+
+        // Call the addToCart function with the book ID and quantity
+        addToCart(book_id, quantity);
+    }
+
+    // Add event listener to all "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', addToCartHandler);
+    });
+
+
+    // Function to add a book to the cart
+    function addToCart(book_id, quantity) {
+        const itemData = {
+            bookId: book_id,
+            quantity: quantity,
+        };
+
+        fetch('http://localhost:5001/api/cart/add-to-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itemData),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Book added to cart successfully.');
+                } else {
+                    console.error('Failed to add book to cart.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Function to remove a book from the cart
+    function removeFromCart(book_id) {
+        const itemData = {
+            bookId: book_id,
+        };
+
+        fetch('http://localhost:5001/api/cart/remove-from-cart', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itemData),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Book removed from cart successfully.');
+                    // Optionally, update the cart display after successful removal
+                    getCartItems(); // Call getCartItems to update cart display
+                } else {
+                    console.error('Failed to remove book from cart.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Function to get all cart items (books) for a user
+    function getCartItems() {
+        fetch(`http://localhost:5001/api/cart/cart-items`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // Call the displayCartItems function to display the cart items in the modal
+                displayCartItems(data);
+                console.log('Cart books:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Function to display cart items on the frontend
+    function displayCartItems(cartItems) {
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        // Clear previous content
+        cartItemsContainer.innerHTML = '';
+
+        // Check if cart is empty
+        if (cartItems.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            return;
+        }
+
+        // Loop through the cart items and create HTML elements for each item
+        cartItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('cart-item');
+            itemDiv.innerHTML = `
+            <p>Book ID: ${item.book_id}</p>
+            <p>Title: ${item.title}</p>
+            <p>Quantity: ${item.quantity}</p>
+            <button class="btn btn-danger remove-button" data-book-id="${item.book_id}">Remove</button>
+        `;
+            cartItemsContainer.appendChild(itemDiv);
+        });
+
+        // Add event listeners to the remove buttons
+        addRemoveButtonListeners();
+    }
+
+    // Function to add event listeners to the remove buttons
+    function addRemoveButtonListeners() {
+        const removeButtons = document.querySelectorAll('.remove-button');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const book_id = button.getAttribute('data-book-id');
+                removeFromCart(book_id);
+            });
+        });
+    }
+
+    // Call getCartItems to initially display cart items
+    getCartItems();
+
+    // Function to clear all books from the cart for a user
+    function clearCart() {
+        fetch('http://localhost:5001/api/cart/clear-cart', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Cart cleared successfully.');
+                    // Optionally, update the cart display after successful clearing
+                    getCartItems(); // Call getCartItems to update cart display
+                } else {
+                    console.error('Failed to clear cart.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Add event listener to the Clear Cart button
+    const clearCartBtn = document.getElementById('clear-cart-btn');
+    clearCartBtn.addEventListener('click', () => {
+        // Call the clearCart function to clear the cart
+        clearCart();
+    });
+     // Call fetchBooksByGenre function when needed
+     document.getElementById('genreSelect').addEventListener('change', fetchBooksByGenre);
+    
+     // Function to show checkout form when the Checkout button is clicked
+    document.getElementById('checkout-btn').addEventListener('click', function () {
+        // Hide the Checkout button
+        this.style.display = 'none';
+        // Show the Checkout form
+        document.getElementById('checkout-form').style.display = 'block';
+    });
+    // Function to handle form submission
+    document.getElementById('checkout-form').addEventListener('submit', function (event) {
+        if (event.target && event.target.id === 'checkout-form') {
+            event.preventDefault();
+            // Implement logic to submit the checkout form
+            const orderData = {
+                customerName: document.getElementById('customer_name').value,
+                email: document.getElementById('customer_email').value,
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+                phoneNumber: document.getElementById('phone_number').value,
+                postalCode: document.getElementById('postal_code').value,
+                shippingMethod: document.getElementById('shipping_method').value,
+                paymentMethod: document.getElementById('payment_method').value,
+                orderSummary: document.getElementById('order_summary').value,
+                subTotal: document.getElementById('sub_total').value,
+                shipping: document.getElementById('shipping_cost').value,
+                total: document.getElementById('total').value
+            };
+            // Call createOrder function with the extracted data
+            createOrder(orderData);
+        }
+    });
+    // Fetch all orders
+    fetchAllOrders();
+    // Fetch order by ID (replace 1 with the actual order ID)
+   // fetchOrderById();
+    //createOrder(orderData);
+
+
+    // Set current year dynamically
+    document.getElementById("currentYear").innerText = new Date().getFullYear();
+    function openTab(tabName) {
+        // Get all elements with class "tab-content" and hide them
+        var tabContents = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabContents.length; i++) {
+            tabContents[i].style.display = "none";
+        }
+    
+        // Show the content of the tab with the given tabName
+        var tabContent = document.getElementById(tabName);
+        if (tabContent) {
+            tabContent.style.display = "block";
+        }
+    }
+    
+    
+});
+
+function toggleAboutUs() {
+    console.log("Toggle About Us function called");
+    var aboutUsMore = document.getElementById("about-us-more");
+    var readMoreLink = document.querySelector(".text-white");
+
+    if (aboutUsMore.style.display === "none") {
+        aboutUsMore.style.display = "block";
+        readMoreLink.textContent = "Read Less";
+    } else {
+        aboutUsMore.style.display = "none";
+        readMoreLink.textContent = "Read More";
+    }
+}
+
+
+function toggleAnswer(id) {
+    var answer = document.getElementById(id + '-answer');
+    if (answer.style.display === 'none') {
+        answer.style.display = 'block';
+    } else {
+        answer.style.display = 'none';
+    }
+}
+
+// Function to fetch books by genre
+async function fetchBooksByGenre() {
+    const selectedGenre = document.getElementById('genreSelect').value;
+    try {
+        const response = await fetch(`http://localhost:5001/api/books/genre/${selectedGenre}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch books by genre');
+        }
+        const books = await response.json();
+        displayBooksByGenre(books);
+    } catch (error) {
+        console.error('Error fetching books by genre:', error);
+    }
+}
+// Function to display books by genre on the page
+function displayBooksByGenre(books) {
+    const booksByGenreContainer = document.getElementById('booksByGenreContainer');
+    booksByGenreContainer.innerHTML = ''; // Clear previous content
+
+    books.forEach(book => {
+        const colDiv = document.createElement('div');
+        colDiv.classList.add('col-md-4', 'mb-4');
+        colDiv.innerHTML = `
+            <div class="card border-0 shadow book-card">
+                <img src="${book.image_url || 'placeholder.jpg'}" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">${book.title}</h5>
+                    <p class="card-text">Author: ${book.author}</p>
+                    <p class="card-text">Price: $${book.price}</p>
+                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        `;
+        booksByGenreContainer.appendChild(colDiv);
+    });
+
+    // Add event listeners to all "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.btn-primary');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', addToCartHandler);
+    });
+}
+
+// Function to search books
+async function searchBooks(searchTerm) {
+    try {
+        const response = await fetch(`/api/books/search?q=${encodeURIComponent(searchTerm)}`);
+        if (!response.ok) {
+            throw new Error('Failed to search books');
+        }
+        const searchResults = await response.json();
+        return searchResults;
+    } catch (error) {
+        console.error('Error searching books:', error);
+        return [];
+    }
+}
+
+// Function to handle search form submission
+async function handleSearchFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    const searchInput = document.querySelector('.search-input');
+    const searchTerm = searchInput.value.trim(); // Trim whitespace from search term
+    if (searchTerm !== '') {
+        try {
+            const searchResults = await searchBooks(searchTerm);
+            console.log('Search results:', searchResults);
+            displaySearchResults(searchResults); // Display search results
+        } catch (error) {
+            console.error('Error searching books:', error);
+            // Handle error: display error message to the user
+        }
+    } else {
+        console.log('Search term is empty');
+        // Display error message to the user indicating that search term is empty
+    }
+}
+
+// Function to display search results
+function displaySearchResults(searchResults) {
+    const searchResultsContainer = document.getElementById('searchResults');
+    searchResultsContainer.innerHTML = ''; // Clear previous content
+
+    if (searchResults.length === 0) {
+        searchResultsContainer.textContent = 'No results found';
+        return;
+    }
+
+    searchResults.forEach(book => {
+        const bookCard = createBookCard(book);
+        searchResultsContainer.appendChild(bookCard);
+    });
+}
+
+// Function to create a book card
+function createBookCard(book) {
+    // Create a card element
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('card', 'border-0', 'shadow', 'book-card');
+
+    // Create card body
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    // Display book name (title)
+    const title = document.createElement('h5');
+    title.classList.add('card-title');
+    title.textContent = book.title;
+
+    // Display book price
+    const price = document.createElement('p');
+    price.classList.add('card-text');
+    price.textContent = 'Price: $' + book.price;
+
+    // Button to add to cart
+    const addToCartBtn = document.createElement('button');
+    addToCartBtn.textContent = 'Add to Cart';
+    addToCartBtn.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
+    // No event listener attached to the button
+
+    // Button to view more details
+    const moreDetailsBtn = document.createElement('button');
+    moreDetailsBtn.textContent = 'More Details';
+    moreDetailsBtn.classList.add('btn', 'btn-secondary', 'btn-sm');
+    moreDetailsBtn.addEventListener('click', () => {
+        // Toggle visibility of more details
+        const details = bookCard.querySelector('.book-details');
+        details.classList.toggle('hidden');
+    });
+
+    // Container for additional book details (initially hidden)
+    const detailsContainer = document.createElement('div');
+    detailsContainer.classList.add('book-details', 'hidden');
+
+    // Display additional book details (hidden by default)
+    const author = document.createElement('p');
+    author.textContent = 'Author: ' + book.author;
+
+    const genre = document.createElement('p');
+    genre.textContent = 'Genre: ' + book.genre;
+
+    const isbn = document.createElement('p');
+    isbn.textContent = 'ISBN: ' + book.isbn;
+
+    const description = document.createElement('p');
+    description.textContent = 'Description: ' + book.description;
+
+    detailsContainer.appendChild(author);
+    detailsContainer.appendChild(genre);
+    detailsContainer.appendChild(isbn);
+    detailsContainer.appendChild(description);
+
+    // Append elements to card body
+    cardBody.appendChild(title);
+    cardBody.appendChild(price);
+    cardBody.appendChild(addToCartBtn);
+    cardBody.appendChild(moreDetailsBtn);
+    cardBody.appendChild(detailsContainer);
+
+    // Append card body to card
+    bookCard.appendChild(cardBody);
+
+    return bookCard;
+}
+
+// Function to fetch all orders
+async function fetchAllOrders() {
+    try {
+        const response = await fetch('http://localhost:5001/api/orders');
+        if (!response.ok) {
+            throw new Error('Failed to fetch orders');
+        }
+        const orders = await response.json();
+        console.log('All orders:', orders);
+        // Handle the orders data here
+    } catch (error) {
+        console.error('Error fetching orders:', error.message);
+    }
+}
+
+// Function to fetch order by ID
+async function fetchOrderById(orderId) {
+    try {
+        const response = await fetch(`http://localhost:5001/api/orders/${orderId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch order');
+        }
+        const order = await response.json();
+        console.log('Order by ID:', order);
+        // Handle the order data here
+    } catch (error) {
+        console.error('Error fetching order by ID:', error.message);
+    }
+}
+
+// Function to create a new order
+async function createOrder(orderData) {
+    try {
+        const response = await fetch('http://localhost:5001/api/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create order');
+        }
+        const newOrder = await response.json();
+        console.log('New order created:', newOrder);
+        // Show success message
+        document.getElementById('success-message').classList.remove('hidden');
+        // Handle the new order data here
+    } catch (error) {
+        console.error('Error creating order:', error.message);
+    }
+}

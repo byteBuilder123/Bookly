@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5501/Frontend/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Book-Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore a world of knowledge and imagination through our curated collection of books. Join us on a journey of discovery!">
+    <meta name="keywords" content="bookstore, books, literature, reading, fiction, non-fiction, bestsellers">
+    <meta name="author" content="Syeda Saba">
+    <link rel="stylesheet" href="./Book-Store_files/all.min.css">
+    <link rel="stylesheet" href="./Book-Store_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./Book-Store_files/styles.css">
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5501/Frontend/#" onclick="openTab(&#39;books-list&#39;)">Book List</a></li>
+                
+            </ul>
+        </nav>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <!-- Logo and Name -->
+                <a class="navbar-brand" href="http://127.0.0.1:5501/Frontend/#">
+                    <img src="./Book-Store_files/logo.png" height="60" alt="Bookstore Logo">
+                    <span class="ml-2">Book Store</span>
+                </a>
+                <!-- Toggler button for mobile -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5501/Frontend/#main-tag-section">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5501/Frontend/#books-list">Books List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5501/Frontend/#Featured%20Books">Featured Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5501/Frontend/#it-series-books">IT Series Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5501/Frontend/#Reviews">Reviews</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Search Bar Icon -->
+                <div class="ml-3">
+                    <button class="btn btn-light rounded-pill" id="search-icon-btn" aria-label="Search" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Search Bar (Initially Hidden) -->
+                <form id="searchForm" class="form-inline ml-3 search-hidden">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Search books...">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-light" title="Submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div id="searchResults" class="mt-4"></div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Cart and login buttons -->
+                <div class="ml-3">
+                    <button class="btn btn-light rounded-pill" data-toggle="modal" data-target="#cart-modal" aria-label="View Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="d-none d-md-inline ml-1"></span>
+                    </button>
+                    <button class="btn btn-light rounded-pill ml-2" data-toggle="modal" data-target="#login-modal" aria-label="Login">
+                        <i class="fas fa-user"></i>
+                        <span class="d-none d-md-inline ml-1"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="main-tag-section" class="py-5 bg-light">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="main-content">
+                        <h1 class="display-4">Welcome To BookStore</h1>
+                        <p class="lead">Embark on a literary adventure through our handpicked collection of books. Let
+                            your imagination soar!</p>
+                        <a href="http://127.0.0.1:5501/Frontend/#discover-section" class="btn btn-primary btn-lg rounded-pill" id="cta-button">Discover
+                            Our Collection</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <!-- Add promotional content, images, or ads here -->
+                    <div class="promo-item">
+                        <img src="./Book-Store_files/bookhouse.jpg" alt="Promotional Image 1" class="img-fluid mb-3">
+                        <p>Discover our latest arrivals!</p>
+                    </div>
+                    <div class="promo-item">
+                        <img src="./Book-Store_files/tea&amp;book.jpg" alt="Promotional Image 2" class="img-fluid mb-3">
+                        <p>Enjoy special discounts on bestsellers!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="Services" class="py-5 bg-primary">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Our Services</h2>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <!-- Service Card 1 -->
+                    <div class="card border-0 shadow text-center service-card">
+                        <div class="card-body">
+                            <!-- Replace the icon with a relevant one -->
+                            <i class="fas fa-book fa-3x mb-3 text-primary"></i>
+                            <h3 class="card-title">Wide Book Selection</h3>
+                            <!-- Add a relevant description for the service -->
+                            <p class="card-text">Explore a vast collection of books across various genres.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <!-- Service Card 2 -->
+                    <div class="card border-0 shadow text-center service-card">
+                        <div class="card-body">
+                            <!-- Replace the icon with a relevant one -->
+                            <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
+                            <h3 class="card-title">Fast Delivery</h3>
+                            <!-- Add a relevant description for the service -->
+                            <p class="card-text">Get your books delivered quickly and efficiently.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <!-- Service Card 3 -->
+                    <div class="card border-0 shadow text-center service-card">
+                        <div class="card-body">
+                            <!-- Replace the icon with a relevant one -->
+                            <i class="fas fa-tags fa-3x mb-3 text-primary"></i>
+                            <h3 class="card-title">Special Deals</h3>
+                            <!-- Add a relevant description for the service -->
+                            <p class="card-text">Discover amazing deals and offers on our books.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <!-- Service Card 4 -->
+                    <div class="card border-0 shadow text-center service-card">
+                        <div class="card-body">
+                            <!-- Replace the icon with a relevant one -->
+                            <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                            <h3 class="card-title">Secure Payment</h3>
+                            <!-- Add a relevant description for the service -->
+                            <p class="card-text">Shop with confidence using our secure payment methods.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="books-list" class="tab-content">
+        <!--content-->
+    </div>
+
+    <!-- IT Series Books Section -->
+    <section id="it-series-books" class="py-5 bg-primary">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">IT Series Books</h2>
+            <div id="it-series-books-container" class="books-container">
+                <!-- IT series books will be displayed here dynamically -->
+            <div class="card border-0 shadow book-card"><div class="card-body"><h5 class="card-title">Computer Programming</h5><p class="card-text">Price: $500.00</p><button class="btn btn-primary btn-sm mr-2">Add to Cart</button><button class="btn btn-secondary btn-sm">More Details</button><div class="book-details hidden"><p>Author: Donald E. Knuth</p><p>Genre: Computer Science</p><p>ISBN: 978-0-201-03804-0</p><p>Description: A comprehensive multi-volume work on computer programming algorithms and their analysis.</p></div></div></div><div class="card border-0 shadow book-card"><div class="card-body"><h5 class="card-title">Structure of Computer Programs</h5><p class="card-text">Price: $666.00</p><button class="btn btn-primary btn-sm mr-2">Add to Cart</button><button class="btn btn-secondary btn-sm">More Details</button><div class="book-details hidden"><p>Author: Julie Sussman</p><p>Genre: Computer Science</p><p>ISBN: 978-0-262-01153-2</p><p>Description: An introductory computer science textbook used in introductory courses at MIT.</p></div></div></div><div class="card border-0 shadow book-card"><div class="card-body"><h5 class="card-title">Operating System Concepts</h5><p class="card-text">Price: $499.00</p><button class="btn btn-primary btn-sm mr-2">Add to Cart</button><button class="btn btn-secondary btn-sm">More Details</button><div class="book-details hidden"><p>Author: Greg Gagne</p><p>Genre: Operating Systems</p><p>ISBN: 978-1-118-06333-0</p><p>Description: Covers fundamental concepts in operating systems, including process management, memory management, and file systems.</p></div></div></div><div class="card border-0 shadow book-card"><div class="card-body"><h5 class="card-title">Computer Networks</h5><p class="card-text">Price: $500.00</p><button class="btn btn-primary btn-sm mr-2">Add to Cart</button><button class="btn btn-secondary btn-sm">More Details</button><div class="book-details hidden"><p>Author: David J. Wetherall</p><p>Genre: Computer Networks</p><p>ISBN: 978-0-13-359414-0</p><p>Description: Covers various aspects of computer networks, including network architectures, protocols, and applications.</p></div></div></div><div class="card border-0 shadow book-card"><div class="card-body"><h5 class="card-title">DBMS</h5><p class="card-text">Price: $480.00</p><button class="btn btn-primary btn-sm mr-2">Add to Cart</button><button class="btn btn-secondary btn-sm">More Details</button><div class="book-details hidden"><p>Author:  Johannes Gehrke</p><p>Genre: Database Systems</p><p>ISBN: 978-0-07-246563-1</p><p>Description: A comprehensive introduction to database management systems, covering both theoretical and practical aspects.</p></div></div></div></div>
+        </div>
+    </section>
+
+    <!-- Books Section genre -->
+    <section id="booksByGenre" class="py-5 bg-primary">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Books By Genre</h2>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <label for="genreSelect">Select Genre:</label>
+                        <select id="genreSelect" class="form-control">
+                            <option value="Fiction">Fiction</option>
+                            <option value="History">History</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <!-- Add more genre options as needed -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="booksByGenreContainer" class="row">
+                <!-- Books will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books-list" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Books List</h2>
+            <div id="all-books-container" class="row"><div class="col-md-4 mb-4">
+            <div class="card border-0 shadow book-card">
+                <img src="./Book-Store_files/placeholder.jpg" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">The Crow Eaters</h5>
+                    <p class="card-text">Author: Bapsi Sidhwa</p>
+                    <p class="card-text">Price: $15.75</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="6">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        </div><div class="col-md-4 mb-4">
+            <div class="card border-0 shadow book-card">
+                <img src="./Book-Store_files/otherwoundr.jpeg" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">In Other Rooms, Other Wonders</h5>
+                    <p class="card-text">Author: Daniyal Mueenuddin</p>
+                    <p class="card-text">Price: $14.99</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="7">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        </div><div class="col-md-4 mb-4">
+            <div class="card border-0 shadow book-card">
+                <img src="./Book-Store_files/janntpty.jpeg" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">Jannat Kay Pattay</h5>
+                    <p class="card-text">Author: Nimra Ahmed</p>
+                    <p class="card-text">Price: $20.99</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="8">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        </div><div class="col-md-4 mb-4">
+            <div class="card border-0 shadow book-card">
+                <img src="./Book-Store_files/naml1.jpeg" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">Namal</h5>
+                    <p class="card-text">Author: Nimra Ahmed</p>
+                    <p class="card-text">Price: $18.50</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="9">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        </div><div class="col-md-4 mb-4">
+            <div class="card border-0 shadow book-card">
+                <img src="./Book-Store_files/placeholder.jpg" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                    <h5 class="card-title">Peer-e-Kamil</h5>
+                    <p class="card-text">Author: Umera Ahmed</p>
+                    <p class="card-text">Price: $16.75</p>
+                    <button class="btn btn-primary btn-sm" data-book-id="10">Add to Cart</button>
+                    <button class="btn btn-danger remove-button">Remove</button>
+                </div>
+            </div>
+        </div><button class="btn btn-primary mt-3">View All Books</button></div>
+        </div>
+    </section>
+
+    <!-- Featured Books Section -->
+    <section id="Featured Books" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Featured Books</h2>
+            <div class="row" id="featured-books-row"><div class="col-md-4 mb-4">
+                <div class="card border-0 shadow featured-book-card">
+                    <img src="./Book-Store_files/hrypotr.jpeg" class="card-img-top" alt="Featured Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Harry Potter and the Philosopher's Stone</h5>
+                        <p class="card-text">Author: J.K. Rowling</p>
+                        <p class="card-text">Price: $15.99</p>
+                        <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section id="New Arrivals" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">New Arrivals</h2>
+            <div class="row" id="new-arrivals-row">
+                <!-- Individual Book Item 
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow book-card">
+                        <img src="img/candle.jpg" class="card-img-top" alt="Book Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Book Title</h5>
+                            <p class="card-text">Author: Author Name</p>
+                            <p class="card-text">Price: $19.99</p>
+                            <button class="btn btn-primary btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Repeat the above structure for each book -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="Reviews" class="py-5 bg-primary">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Reviews</h2>
+            <div id="all-reviews-container" class="row">
+                <!-- Existing reviews will be dynamically added here -->
+            <div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Alice Smith</h5><p class="card-text">Rating: 4</p><p class="card-text">Interesting storyline. Could not put the book down.</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Bob Johnson</h5><p class="card-text">Rating: 3</p><p class="card-text">Decent book, but could use some improvements.</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Emily Brown</h5><p class="card-text">Rating: 5</p><p class="card-text">Absolutely loved it! A must-read for everyone.</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Sana Malik</h5><p class="card-text">Rating: 4</p><p class="card-text">خوبصورت اور دلچسپ۔ ہر صفحے سے لطف اندوز ہوا۔</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Farhan Khan</h5><p class="card-text">Rating: 2</p><p class="card-text">کہانیوں کے موڑ پر مایوس ہوگیا۔ مزید کیا توقع کی گئی۔</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Ayesha Khan</h5><p class="card-text">Rating: 4</p><p class="card-text">بہت دلچسپ کہانی۔ کتاب کو روکنا ممکن نہیں تھا۔</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">saira bano</h5><p class="card-text">Rating: 5</p><p class="card-text">Its amazing.</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">Sana Fatima</h5><p class="card-text">Rating: 4</p><p class="card-text">amazing collection. I just loved it!</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">shuja </h5><p class="card-text">Rating: 4</p><p class="card-text">amazng collection .</p></div></div></div><div class="col-md-4 mb-4"><div class="card border-0 shadow review-card"><div class="card-body"><h5 class="card-title">bisma</h5><p class="card-text">Rating: 4</p><p class="card-text">its lovely collection</p></div></div></div></div>
+        </div>
+    </section>
+
+    <!-- Review Form -->
+    <div class="container mt-5">
+        <button id="toggleReviewFormBtn" class="btn btn-primary mb-3">Review Form</button>
+        <div id="reviewFormContainer" class="hidden">
+
+            <section id="review-form">
+                <h2 class="text-center mb-4">Submit a Review</h2>
+                <form id="reviewForm">
+                    <!-- Review form fields -->
+                    <div class="form-group">
+                        <label for="reviewName">Name</label>
+                        <input type="text" class="form-control" id="reviewName" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">Review</label>
+                        <textarea class="form-control" id="reviewText" rows="3" required=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewRating">Rating</label>
+                        <input type="number" class="form-control" id="reviewRating" min="1" max="5" required="">
+                    </div>
+                    <button type="button" id="submitReviewBtn" class="btn btn-primary">Submit Review</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!--Registration form-->
+    <div class="container mt-5">
+        <button id="toggleRegistrationFormBtn" class="btn btn-primary mb-3">Registration Form</button>
+        <div id="registrationFormContainer" style="display: none;">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="registration-username">Username:</label>
+                    <input type="text" class="form-control" id="registration-username" name="username" data-purpose="registration" required="">
+                </div>
+                <div class="form-group">
+                    <label for="registration-email">Email:</label>
+                    <input type="email" class="form-control" id="registration-email" name="email" required="">
+                </div>
+                <div class="form-group">
+                    <label for="registration-password">Password:</label>
+                    <input type="password" class="form-control" id="registration-password" name="password" required="">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <div id="registration-message" class="mt-3"></div>
+        </div>
+    </div>
+
+    <!--Contact section-->
+    <section id="Contact" class="py-5 bg-white">
+        <div class="container">
+            <h1 class="text-center display-4 mb-5">Contact Us</h1>
+            <!-- Existing content for the "Contact Us" section -->
+            <form id="contactForm" action="http://127.0.0.1:5501/submit" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required="">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required="">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required=""></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!--Login Modal-->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="login-modal-label">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername">Username:</label>
+                            <input type="text" class="form-control" id="loginUsername" name="loginUsername" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password:</label>
+                            <input type="password" class="form-control" id="loginPassword" name="loginPassword" required="">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <p id="loginMessage"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Cart Modal-->
+    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="cart-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cart-modal-label">Shopping Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="cart-modal-body">
+                    <!-- Cart content goes here -->
+                    <div id="cart-items-container"><p>Your cart is empty.</p></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- Checkout button -->
+                    <button type="button" class="btn btn-primary" id="checkout-btn">Checkout</button>
+                    <!-- Clear cart button -->
+                    <button type="button" class="btn btn-danger" id="clear-cart-btn">Clear Cart</button>
+                    <!-- Checkout form -->
+                    <form id="checkout-form" class="hidden">
+                        <div class="form-group">
+                            <label for="customer_name">Name</label>
+                            <input type="text" class="form-control" id="customer_name" name="customer_name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_email">Email</label>
+                            <input type="customer_email" class="form-control" id="customer_email" name="customer_email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="4" required=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Contact Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping_method">Shipping Method</label>
+                            <select class="form-control" id="shipping_method" name="shipping_method" required="">
+                                <option value="standard">Standard Shipping ($5.00)</option>
+                                <option value="express">Express Shipping ($10.00)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment_method">Payment Method</label>
+                            <select class="form-control" id="payment_method" name="payment_method" required="">
+                                <option value="creditCard">Credit Card</option>
+                                <option value="debitCard">Debit Card</option>
+                                <option value="paypal">PayPal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="order_summary">Order Summary</label>
+                            <textarea class="form-control" id="order_summary" name="order_summary" rows="4" required=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="sub_total">Sub Total</label>
+                            <input type="text" class="form-control" id="sub_total" name="sub_total" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping_cost">Shipping</label>
+                            <input type="text" class="form-control" id="shipping_cost" name="shipping_cost" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="text" class="form-control" id="total" name="total" required="">
+                        </div>
+                        <!-- Add more checkout form fields here -->
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </form>
+                    
+<!-- Success message (initially hidden) -->
+<div id="success-message" class="hidden">
+    <p>Order placed successfully!</p>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="order-list">
+        <!-- Orders will be displayed here -->
+    </div>
+
+    <!--  Bootstrap JS and other scripts -->
+    <script src="./Book-Store_files/jquery-3.6.0.min.js.download"></script>
+    <script src="./Book-Store_files/bootstrap.bundle.min.js.download"></script>
+
+    <!--  JavaScript file -->
+    <script src="./Book-Store_files/main.js.download"></script>
+
+    <footer class="bg-dark text-white">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Contact Us</h5>
+                    <p>Email: bookstore@gmail.com</p>
+                    <p>Phone: +1234567890</p>
+                    <p>Address: 123 Main Street, Muzaffarabad, Azad Kashmir</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>Welcome to Book Store, your destination for exploring the world of literature and imagination.
+                    </p>
+                    <p id="about-us-more" class="hidden">We believe in the power of books to transform lives and inspire
+                        new adventures. Our mission is to provide a curated collection of books that cater to diverse
+                        interests and tastes, ensuring that every reader finds something special within our shelves.</p>
+                    <a href="http://127.0.0.1:5501/Frontend/#" class="text-white" onclick="toggleAboutUs(); return false;">Read More</a>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>FAQ</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="http://127.0.0.1:5501/Frontend/#" class="text-white" onclick="toggleAnswer(&#39;how-to-order&#39;); return false;">How to
+                                place an order?</a>
+                            <p id="how-to-order-answer" class="hidden">To place an order, simply browse our collection,
+                                select the books you want, and proceed to checkout.</p>
+                        </li>
+
+                        <li>
+                            <a href="http://127.0.0.1:5501/Frontend/#" class="text-white" onclick="toggleAnswer(&#39;shipping-options&#39;); return false;">What are the shipping
+                                options?</a>
+                            <p id="shipping-options-answer" class="hidden">We offer standard and express shipping
+                                options. Standard shipping typically takes 3-5 business days, while express shipping
+                                delivers within 1-2 business days.</p>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5501/Frontend/#" class="text-white" onclick="toggleAnswer(&#39;track-order&#39;); return false;">How can
+                                I track my order?</a>
+                            <p id="track-order-answer" class="hidden">Once your order has been shipped, you will receive
+                                a tracking number via email. You can use this tracking number to monitor the status of
+                                your delivery.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="http://127.0.0.1:5501/Frontend/#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="http://127.0.0.1:5501/Frontend/#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="http://127.0.0.1:5501/Frontend/#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-3">
+            <p>© <span id="currentYear">2024</span> Book Store. All rights reserved.</p>
+        </div>
+    </footer>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

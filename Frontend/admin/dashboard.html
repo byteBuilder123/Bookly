@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Admin Dashboard for Book Store">
+    <meta name="author" content="Your Name">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <!-- Logo and Name -->
+            <a class="navbar-brand" href="#">
+                <img src="../img/logo.png" height="60" alt="Bookstore Logo">
+                <span class="ml-2">Bookly</span>
+            </a>
+            <!-- Toggler button for mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Admin Dashboard Content -->
+    <div class="container mt-2">
+        <h2>Welcome, Admin!</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Sidebar menu -->
+                <ul class="list-group">
+                    <li class="list-group-item active">Dashboard</li>
+                    <li class="list-group-item"><a href="#add_books">Add Books</a></li>
+                    <li class="list-group-item"><a href="#add_category">Add
+                            Category</a></li>
+
+                    <li class="list-group-item"><a href="#manage_category">Manage
+                            Category</a></li>
+
+                    <li class="list-group-item"><a href="#manage_books">Manage Books</a></li>
+                    <li class="list-group-item"><a href="#manage_users">Manage Users</a></li>
+                    <li class="list-group-item"><a href="#view_orders">View
+                            Orders</a></li>
+                    <li class="list-group-item"><a href="../index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+
+                <!-- Manage Books Section -->
+
+                <div id="add_books" class="card dashboard-section active">
+                    <div class="card-header">
+                        Add Books
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-group">
+                                <label for="book_id">Book ID:</label>
+                                <input type="number" class="form-control" id="book_id" name="book_id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author:</label>
+                                <input type="text" class="form-control" id="author" name="author" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Category:</label>
+                                <select class="form-control" id="genre" name="genre" required></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description" name="description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="published_date">Published
+                                    Date:</label>
+                                <input type="date" class="form-control" id="published_date" name="published_date"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="availability_status">Availability
+                                    Status:</label>
+                                <select class="form-control" id="availability_status" name="availability_status"
+                                    required>
+                                    <option value="1">Available</option>
+                                    <option value="0">Not Available</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image:</label>
+                                <input type="file" class="form-control" id="image" name="image" required
+                                    accept="image/*">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="is_featured">Is
+                                    Featured:</label>
+                                <select class="form-control" id="is_featured" name="is_featured" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                            <div id="message" class="alert" role="alert"></div>
+                            <button type="submit" class="btn btn-primary">Add Book</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- Add Category Section -->
+                <div id="add_category" class="card dashboard-section">
+                    <div class="card-header">
+                        Add Category
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-group">
+                                <label for="category_name">Category
+                                    Name:</label>
+                                <input type="text" class="form-control" id="category_name" name="category_name"
+                                    required>
+                            </div>
+                            <div id="message" class="alert" role="alert"></div>
+                            <button type="submit" class="btn btn-primary">Add
+                                Category</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="manage_books" class="card dashboard-section active">
+                    <div class="card-header">
+                        Manage Books
+                    </div>
+                    <div class="card-body">
+                        <!-- Here, you fetch books from your backend and dynamically generate HTML for each book -->
+                        <div class="book-list">
+                            <!-- Dynamic generation of book items will be done by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Category Section -->
+                <div id="manage_category" class="card dashboard-section">
+                    <div class="card-header">
+                        Manage Category
+                    </div>
+                    <div class="card-body">
+                        <!-- Here, you fetch categories from your backend and dynamically generate HTML for each category -->
+                        <div class="category-list">
+                            <!-- Dynamic generation of category items will be done by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for Editing Category -->
+                <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog"
+                    aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCategoryModalLabel">Edit
+                                    Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editCategoryForm">
+                                    <input type="hidden" id="editCategoryId" name="category_id">
+                                    <div class="form-group">
+                                        <label for="editCategoryName">Category
+                                            Name:</label>
+                                        <input type="text" class="form-control" id="editCategoryName"
+                                            name="category_name" required>
+                                    </div>
+                                    <div id="message" class="alert" role="alert"></div>
+                                    <button type="submit" class="btn btn-primary" id="update_category">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for Editing Book -->
+                <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog"
+                    aria-labelledby="editBookModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editBookModalLabel">Edit Book</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editBookForm">
+                                    <input type="hidden" id="editBookId" name="book_id">
+                                    <div class="form-group">
+                                        <label for="editIsFeatured">Is
+                                            Featured:</label>
+                                        <select class="form-control" id="editIsFeatured" name="is_featured" required>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editAvailability">Availability:</label>
+                                        <select class="form-control" id="editAvailability" name="availability" required>
+                                            <option value="1">Available</option>
+                                            <option value="0">Not
+                                                Available</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPrice">Price:</label>
+                                        <input type="number" step="0.01" class="form-control" id="editPrice"
+                                            name="price" required>
+                                    </div>
+                                    <div id="message" class="alert" role="alert"></div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Users Section -->
+                <div id="manage_users" class="card dashboard-section">
+                    <div class="card-header">
+                        Manage Users
+                    </div>
+                    <div class="card-body">
+                        <!-- Here, you fetch users from your backend and dynamically generate HTML for each user -->
+                        <div class="user-list">
+
+                            <!-- Add more user items dynamically -->
+                        </div>
+                        <div id="message" class="alert" role="alert"></div>
+                    </div>
+                </div>
+
+                <!-- View Orders Table -->
+                <div id="view_orders" class="card dashboard-section">
+                    <div class="card-header">
+                        View Orders
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Total Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <!-- Add more rows dynamically -->
+                            </tbody>
+
+                        </table>
+                        <div id="message" class="alert" role="alert"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; <span id="currentYear"></span> Book Store. All rights
+                reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+
+    <script>
+        // dashboard.js
+
+        $(document).ready(function () {
+            // Initially hide all sections except Edit Profile
+            $('.dashboard-section').hide();
+            $('#add_books').show();
+
+            // Show the corresponding section when a sidebar link is clicked
+            $('.list-group-item').click(function () {
+                // Get the href attribute of the clicked link
+                let sectionId = $(this).find('a').attr('href');
+
+                // Hide all sections
+                $('.dashboard-section').hide();
+
+                // Show the clicked section
+                $(sectionId).show();
+            });
+        });
+
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

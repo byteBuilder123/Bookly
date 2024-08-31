@@ -1,0 +1,464 @@
+/* styles.css */
+
+/* Define CSS for hiding the details initially */
+.hidden {
+    display: none;
+}
+
+
+/* Navbar styles */
+.navbar {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #86b7e8;
+    padding: 10px 0;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+.navbar-brand {
+    color: white;
+    /* White text */
+    font-size: 1.5em;
+    transition: color 0.5s ease;
+}
+
+.navbar-nav .nav-link {
+
+    /* White text */
+    color: white;
+    /* Changed to black */
+    margin: 0 10px;
+    transition: color 0.5s ease;
+}
+
+#login-registration-modal {
+    display: none;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    #checkout-form {
+        max-width: 100%;
+    }
+}
+
+/* Custom CSS to fix button size */
+.btn.checkout-btn,
+.btn.clear-cart-btn,
+.btn.close-btn {
+    width: calc(25% - 10px);
+    margin-right: 10px;
+}
+
+#checkout-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #0071cd;
+    border-radius: 5px;
+    background-color: #77c7f2;
+}
+
+#checkout-form .form-group {
+    margin-bottom: 20px;
+}
+
+#checkout-form label {
+    font-weight: bold;
+}
+
+#checkout-form input[type="text"],
+#checkout-form input[type="email"],
+#checkout-form input[type="tel"],
+#checkout-form textarea,
+#checkout-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#checkout-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styling for the Books Section genre */
+#booksByGenre {
+    padding: 50px 0;
+    /* Adjust the padding as needed */
+}
+
+#booksByGenre h2 {
+    color: #333;
+}
+
+#genreSelect {
+    width: 100%;
+    max-width: 300px;
+    /* Limit the width of the select element */
+    margin: 0 auto;
+    /* Center the select element */
+}
+
+#booksByGenreContainer {
+    margin-top: 30px;
+    /* Add some space between the select and the books */
+}
+
+#booksByGenreContainer .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#booksByGenreContainer .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Styling for the book images */
+.card-img-top {
+    max-width: 150px;
+    /* Set a maximum width for the images */
+    max-height: 200px;
+    /* Set a maximum height for the images */
+    width: auto;
+    /* Ensure images maintain aspect ratio */
+    height: auto;
+    /* Ensure images maintain aspect ratio */
+    margin-bottom: 10px;
+    /* Add some space below the images */
+}
+
+/* Search Form Styles */
+#searchForm {
+
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+}
+
+.search-input {
+    border-radius: 20px;
+}
+
+.search-hidden {
+    display: none;
+}
+
+#checkoutForm {
+    display: none;
+}
+
+/* Adjusted heading styles */
+h2.text-center.display-4 {
+    color: #333;
+    /* Dark text */
+    margin-bottom: 30px;
+    /* Adjust spacing */
+}
+
+/* Welcome Section styles */
+#main-tag-section {
+    background-color: #3498db;
+    /* Blue background */
+    color: #0c0c0c;
+    /* White text */
+    padding: 100px 0;
+    /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+
+}
+
+.service-card {
+    background-color: #f7f7f7;
+    /* White background */
+    border-radius: 10px;
+}
+
+.service-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow on hover */
+    transform: translateY(-5px);
+    /* Add a slight lift effect on hover */
+}
+
+.service-card .card-body {
+    padding: 40px 20px;
+    /* Increase padding for better spacing */
+}
+
+.service-card .card-title {
+    font-size: 24px;
+    /* Increase font size for card titles */
+    margin-bottom: 20px;
+    color: #333333;
+    /* Dark text color */
+}
+
+.service-card .card-text {
+    font-size: 16px;
+    /* Adjust font size for card descriptions */
+    color: #666666;
+    /* Lighter text color */
+}
+
+.service-card i {
+    color: #1f8fe4;
+    /* Blue icon color */
+}
+
+/* Featured Books Section styles */
+#FeaturedBooks {
+    background-color: #ecf0f1;
+    /* Light gray background */
+    padding: 100px 0;
+    /* Adjust as needed */
+}
+
+/* New Arrivals Section styles */
+#NewArrivals {
+    background-color: #043efc;
+    /* Light gray background */
+    padding: 100px 0;
+    /* Adjust as needed */
+}
+
+/* Reviews Section styles */
+#Reviews {
+    background-color: #2c3e50;
+    /* Dark blue background */
+    color: #0a30f0;
+    /* White text */
+    padding: 100px 0;
+    /* Adjust as needed */
+}
+
+/* Review Form Container Styles */
+#reviewFormContainer {
+
+    margin-top: 50px;
+}
+
+/* Review Form Styles */
+#review-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    /* White background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+}
+
+#review-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+#review-form input[type="text"],
+#review-form input[type="number"],
+#review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#review-form textarea {
+    resize: none;
+}
+
+#review-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #050505;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#review-form button:hover {
+    background-color: #0056b3;
+}
+
+#review-form button:focus {
+    outline: none;
+}
+
+/* Success Message Styles */
+#success-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    color: #155724;
+}
+
+
+/* Registration Form styles */
+#registrationFormContainer {
+    display: none;
+}
+
+/* Contact Section styles */
+#Contact {
+    background-color: #ffffff;
+    /* White background */
+    padding: 100px 0;
+    /* Adjust as needed */
+}
+
+/* Footer styles */
+footer {
+    background-color: #2c3e50;
+    /* Dark blue background */
+    color: #ffffff;
+    /* White text */
+    padding-top: 50px;
+}
+
+.social-icons a {
+    color: #ffffff;
+    /* White social icons */
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.social-icons a:hover {
+    color: #cccccc;
+    /* Light gray hover color */
+}
+
+#about-us-more {
+    display: none;
+}
+
+.error-message {
+    color: #dc3545;
+    /* Red color for error messages */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.success {
+    color: #28a745;
+    /* Green color for success messages */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.contact_section h2 {
+    margin-bottom: 45px;
+}
+
+.contact_section form {
+    padding-right: 35px;
+}
+
+.contact_section input {
+    width: 100%;
+    border: 0;
+    height: 50px;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    padding-left: 25px;
+    outline: none;
+    color: #101010;
+    background: #f1f1f1;
+}
+
+.contact_section input::-webkit-input-placeholder {
+    color: #131313;
+}
+
+.contact_section input:-ms-input-placeholder {
+    color: #131313;
+}
+
+.contact_section input::-ms-input-placeholder {
+    color: #131313;
+}
+
+.contact_section input::placeholder {
+    color: #131313;
+}
+
+.contact_section input.message-box {
+    height: 120px;
+    border-radius: 15px;
+}
+
+.contact_section .btn-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 10px;
+}
+
+.contact_section button {
+    display: inline-block;
+    padding: 12px 45px;
+    background-color: #44b89d;
+    color: #ffffff;
+    border-radius: 45px;
+    border: 1px solid #44b89d;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.contact_section button:hover {
+    background-color: transparent;
+    color: #44b89d;
+}
+
+.contact_section .img-box img {
+    width: 100%;
+}
+
+
+/* Add styles for success and error messages */
+.alert {
+    display: none;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Custom styles for the error message */
+.card-error-message {
+    font-weight: bold;
+    color: #721c24;
+    border-color: #f5c6cb;
+    /* Add more styles as needed */
+}

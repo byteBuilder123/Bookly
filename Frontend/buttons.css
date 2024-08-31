@@ -1,0 +1,32 @@
+#booksByGenre .container .row .col-md-6 .form-group .btn {
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    margin-top: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#booksByGenre .container .row .col-md-6 .form-group .btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+#booksByGenre .container .row .col-md-6 .form-group .btn:active {
+    transform: scale(0.9);
+}
+
+/* Style for genre buttons */
+#booksByGenre .container .row .col-md-6 .form-group .genre-btn {
+    margin-right: 10px;
+    /* Add margin to the right of each button for spacing */
+    margin-bottom: 0 px;
+    /* Add margin to the bottom of each button for spacing */
+    border-radius: 5px;
+    /* Add border radius for rounded corners */
+    cursor: pointer;
+    /* Change cursor to pointer on hover */
+}

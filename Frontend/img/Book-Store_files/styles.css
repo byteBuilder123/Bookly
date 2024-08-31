@@ -1,0 +1,154 @@
+/* styles.css */
+
+ /* Define CSS for hiding the details initially */
+ .hidden {
+    display: none;
+}
+
+   /* Navbar styles */
+   .navbar {
+    background-color: #3579bd; /* Dark blue background */
+}
+
+.navbar-brand {
+    color: #f1eded; /* White text */
+}
+
+.navbar-nav .nav-link {
+    color: #000000; /* White text */
+}
+
+/* Search Form Styles */
+#searchForm {
+    
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+}
+.search-input {
+    border-radius: 20px;
+}
+
+.search-hidden {
+    display: none;
+}
+#checkoutForm {
+    display: none;
+}
+
+/* Adjusted heading styles */
+h2.text-center.display-4 {
+    color: #333; /* Dark text */
+    margin-bottom: 30px; /* Adjust spacing */
+}
+/* Welcome Section styles */
+#main-tag-section {
+    background-color: #3498db; /* Blue background */
+    color: #ffffff; /* White text */
+    padding: 100px 0; /* Adjust as needed */
+    background-image: url('img/books2.jpg');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.service-card {
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;
+}
+
+.service-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
+}
+
+.service-card .card-body {
+    padding: 40px 20px; /* Increase padding for better spacing */
+}
+
+.service-card .card-title {
+    font-size: 24px; /* Increase font size for card titles */
+    margin-bottom: 20px;
+    color: #333333; /* Dark text color */
+}
+
+.service-card .card-text {
+    font-size: 16px; /* Adjust font size for card descriptions */
+    color: #666666; /* Lighter text color */
+}
+
+.service-card i {
+    color: #1f8fe4; /* Blue icon color */
+}
+
+/* Books List Section styles */
+#books-list {
+    background-color: #2980b9; /* Dark blue background */
+    color: #010101; /* White text */
+    padding: 100px 0; /* Adjust as needed */
+}
+
+/* Featured Books Section styles */
+#FeaturedBooks {
+    background-color: #ecf0f1; /* Light gray background */
+    padding: 100px 0; /* Adjust as needed */
+}
+
+/* New Arrivals Section styles */
+#NewArrivals {
+    background-color: #ecf0f1; /* Light gray background */
+    padding: 100px 0; /* Adjust as needed */
+}
+
+/* Reviews Section styles */
+#Reviews {
+    background-color: #2c3e50; /* Dark blue background */
+    color: #020202; /* White text */
+    padding: 100px 0; /* Adjust as needed */
+}
+
+/* Review Form styles */
+#review-form {
+    background-color: #ffffff; /* White background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+
+/* Registration Form styles */
+#registrationFormContainer {
+    display: none;
+}
+
+/* Contact Section styles */
+#Contact {
+    background-color: #ffffff; /* White background */
+    padding: 100px 0; /* Adjust as needed */
+}
+
+/* Footer styles */
+footer {
+    background-color: #2c3e50; /* Dark blue background */
+    color: #ffffff; /* White text */
+    padding-top: 50px;
+}
+
+.social-icons a {
+    color: #ffffff; /* White social icons */
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.social-icons a:hover {
+    color: #cccccc; /* Light gray hover color */
+}
+
+#about-us-more {
+    display: none;
+}
+
+
+/* Custom styles */
+/* Add your custom styles here */
